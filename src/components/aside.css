@@ -1,0 +1,11 @@
+aside i {
+    font-size: 1.8em;
+    margin-top: -5px;
+    display: inline-block;
+    margin-right: 1rem;
+}
+aside .aside-title {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+}

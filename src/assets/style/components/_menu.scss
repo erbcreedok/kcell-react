@@ -1,0 +1,28 @@
+.el-menu-item,
+.el-submenu__title {
+  color: $gray-color;
+}
+
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active,
+.el-menu-item.is-active {
+  color: $primary-color;
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 3px;
+    height: 25px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: $primary-color;
+  }
+}
+
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover,
+.el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover,
+.el-menu-item:hover {
+  background-color: rgba($primary-color, .05);
+}

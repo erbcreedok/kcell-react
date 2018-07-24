@@ -1,0 +1,72 @@
+.el-table {
+  border: 0;
+}
+
+.el-table th,
+.el-table__footer-wrapper thead div,
+.el-table__header-wrapper thead div,
+.el-table__fixed-header-wrapper thead div {
+  background-color: transparent;
+}
+
+.el-table .el-checkbox__label {
+  padding: 0;
+}
+
+.el-table .cell {
+  color: $gray3-color;
+  font-size: 1.4rem;
+  font-weight: 200;
+}
+
+.el-table th .cell {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $gray2-color;
+}
+
+.el-table__fixed, .el-table__fixed-right {
+  box-shadow: none;
+}
+
+.el-table td, .el-table th.is-leaf {
+  border-bottom: 1px solid rgba($violet-light-color, .6);
+}
+
+.el-table td, .el-table th {
+  height: 60px;
+}
+.el-table__body-wrapper .el-table__row,
+.el-table--enable-row-hover .el-table__body tr:hover {
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    display: block;
+    left: 0;
+    right: 0;
+    border: 1px solid transparent;
+    transition: .3s;
+    z-index: 1000;
+    height: 60px;
+  }
+}
+.el-table__body-wrapper .el-table__row.hover-row,
+.el-table--enable-row-hover .el-table__body tr:hover {
+  &:after {
+    border: 1px solid $violet-light-color;
+    box-shadow: 0 8px 19px -5px rgba($violet-light-color, .34);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+}
+.el-table__body tr.hover-row.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped>td,
+.el-table__body tr.hover-row>td,
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+  background-color: #fff;
+}
+.el-table::after, .el-table::before {
+  background: none;
+}

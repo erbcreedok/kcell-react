@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import counter from './counter'
+import phones from './phones'
+import cities from "./cities";
+import tariffs from "./tariffs";
 
 export default combineReducers({
-  counter
+    phones,
+    cities,
+    tariffs
 })

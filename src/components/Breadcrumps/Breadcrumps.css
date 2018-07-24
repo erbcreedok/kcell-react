@@ -1,0 +1,21 @@
+.breadcrumbs .el-breadcrumb__item:last-child .el-breadcrumb__item__inner,
+.breadcrumbs .el-breadcrumb__item:last-child .el-breadcrumb__item__inner a,
+.breadcrumbs .el-breadcrumb__item:last-child .el-breadcrumb__item__inner a:hover,
+.breadcrumbs .el-breadcrumb__item:last-child .el-breadcrumb__item__inner:hover {
+    color: #717171;
+}
+
+.breadcrumbs .el-breadcrumb__item__inner, .el-breadcrumb__item__inner a {
+    color: rgba(113, 113, 113, 0.65);
+}
+
+.breadcrumbs .go-back,
+.breadcrumbs .go-back:hover {
+    color: rgba(113, 113, 113, 0.65);
+    transition: .3s;
+    text-decoration: none;
+}
+.breadcrumbs .go-back:hover {
+    color: #20a0ff;
+    cursor: pointer;
+}
