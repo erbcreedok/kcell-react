@@ -93,13 +93,13 @@ button, button:focus {
   background-color: transparent; }
   .el-table.table-transparent th .cell {
     color: #b0b8cc;
-    font-weight: 400; }
+    font-weight: 100; }
   .el-table.table-transparent th.is-leaf, .el-table.table-transparent td {
     border-bottom: 0; }
   .el-table.table-transparent tr, .el-table.table-transparent tr.el-table__row.table-transparent {
     background-color: transparent; }
     .el-table.table-transparent tr td, .el-table.table-transparent tr.el-table__row.table-transparent td {
-      padding: 5px 0; }
+      padding: 0 0 10px; }
       .el-table.table-transparent tr td .cell, .el-table.table-transparent tr.el-table__row.table-transparent td .cell {
         display: flex;
         align-items: center;
@@ -109,10 +109,9 @@ button, button:focus {
   .el-table.table-transparent .el-table__body-wrapper .el-table__row:after,
   .el-table.table-transparent .el-table--enable-row-hover .el-table__body tr:after {
     height: 100px;
-    box-shadow: 0 2px 10px 0 rgba(185, 179, 226, 0.14);
-    margin-top: 5px; }
-  .el-table.table-transparent .el-table__body-wrapper .el-table__row.hover-row:after,
-  .el-table.table-transparent .el-table--enable-row-hover .el-table__body tr:hover:after {
+    box-shadow: 0 2px 10px 0 #dbe4f9;
+    margin-top: 0; }
+  .el-table.table-transparent.el-table__body-wrapper .el-table__row:hover:after, .el-table.table-transparent.el-table__body-wrapper .el-table__row.hover-row:after, .el-table.table-transparent.el-table--enable-row-hover .el-table__body tr:hover:after {
     content: '';
     border: 1px solid #b9b3e2;
     box-shadow: 0 8px 20px 0 rgba(185, 179, 226, 0.34); }
@@ -150,7 +149,7 @@ button, button:focus {
   background-color: #643f8e;
   border-color: #643f8e;
   transition: .3s; }
-  .el-button--primary:focus, .el-button--primary:hover {
+  .el-button--primary:focus, .el-button--primary.focus, .el-button--primary:hover, .el-button--primary.hover {
     background-color: #532e7d;
     border-color: #532e7d; }
 
@@ -160,7 +159,7 @@ button, button:focus {
   border-radius: 2px;
   background-color: #FFFFFF;
   transition: .3s; }
-  .btn-default:hover {
+  .btn-default:hover, .btn-default.hover {
     color: #FFFFFF;
     background-color: #643f8e;
     border: 1px solid #643f8e; }

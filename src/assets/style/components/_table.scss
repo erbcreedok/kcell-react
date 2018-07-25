@@ -75,7 +75,7 @@
   background-color: transparent;
   th .cell {
     color: #b0b8cc;
-    font-weight: 400;
+    font-weight: 100;
   }
   th.is-leaf, td {
     border-bottom: 0;
@@ -83,7 +83,7 @@
   tr, tr.el-table__row.table-transparent {
     background-color: transparent;
     td {
-      padding: 5px 0;
+      padding: 0 0 10px;
       .cell {
         display: flex;
         align-items: center;
@@ -98,12 +98,13 @@
   .el-table--enable-row-hover .el-table__body tr {
     &:after {
       height: 100px;
-      box-shadow: 0 2px 10px 0 rgba($violet-light-color, .14);
-      margin-top: 5px;
+      box-shadow: 0 2px 10px 0 #dbe4f9;
+      margin-top: 0;
     }
   }
-  .el-table__body-wrapper .el-table__row.hover-row,
-  .el-table--enable-row-hover .el-table__body tr:hover {
+  &.el-table__body-wrapper .el-table__row:hover,
+  &.el-table__body-wrapper .el-table__row.hover-row,
+  &.el-table--enable-row-hover .el-table__body tr:hover {
     &:after {
       content: '';
       border: 1px solid $violet-light-color;

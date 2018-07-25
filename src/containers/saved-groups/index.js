@@ -1,13 +1,14 @@
 import React from 'react'
-import {Button, Dialog, Loading, Table} from "element-react";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import CircleButton from "../../components/Buttons/circle-button";
-import NewContact from "../../components/Forms/NewContact";
-import {setBodyClass, setBodyStyle} from "../../modules/body";
-import {loadGroups} from "../../modules/contactGroups";
+import {Button, Dialog, Loading, Table} from "element-react"
+import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
+import CircleButton from "../../components/Buttons/circle-button"
+import {setBodyClass, setBodyStyle} from "../../modules/body"
+import {loadGroups} from "../../modules/contactGroups"
 import * as moment from 'moment'
 import 'moment/locale/ru'
+import NewGroup from "../../components/Forms/NewGroup"
+import './saved-groups.css'
 
 class SavedGroups extends React.Component {
     constructor(props) {
@@ -29,32 +30,31 @@ class SavedGroups extends React.Component {
                 {
                     label: "Название",
                     prop: "groupName",
-                    minWidth: '200px',
+                    minWidth: '150px',
+                    render: (data) =>
+                        <span className="primary-on-hover" style={{fontSize: '1.8rem'}}>{data.groupName}</span>
                 },
                 {
                     label: "Дата создания",
                     prop: "date",
-                    minWidth: '100px',
-                    render: (data) => {
-                        return data.date.format('DD/MM/YYYY')
-                    }
+                    minWidth: '150px',
+                    render: (data) =>
+                        moment(data.date).format('DD/MM/YYYY')
                 },
                 {
                     label: "ID",
                     prop: "id",
-                    width: 120,
+                    width: 150,
                 },
                 {
                     label: "Число контактов",
                     prop: "phones",
-                    width: 170,
-                    render: (data) => {
-                        return data.phones.length
-                    }
+                    width: 150,
+                    render: (data) => data.phones.length
                 },
                 {
                     label: "Действия",
-                    width: 100,
+                    width: 150,
                     render: ()=>{
                         return <span>
                             <Button type="text" size="small" className="mx-3 d-inline-block"><i className="el-icon-edit color-gray"/></Button>
@@ -90,10 +90,10 @@ class SavedGroups extends React.Component {
                         <span className="color-gray d-block mr-4">Фильтры</span>
                     </div>
                 </div>
-                <Loading loading={!this.props.isLoading} text="Загружаем список...">
+                <Loading loading={this.props.isLoading} text="Загружаем список...">
                     <Table
-                        className="my-5 table-transparent"
-                        style={{width: '100%'}}
+                        className="my-5 table-transparent saved-groups-table"
+                        style={{width: '100%', fontSize: '15px'}}
                         columns={this.state.columns}
                         data={this.props.groups}
                         border={false}
@@ -107,15 +107,15 @@ class SavedGroups extends React.Component {
                 </div>
                 <div className="modal-container" style={{zIndex:"1032", position: 'relative'}}>
                     <Dialog
-                        title="Добавить контакт"
-                        size="small"
+                        title="Добавить группу"
+                        size="tiny"
                         visible={ this.state.dialogVisible }
                         onCancel={ () => this.setState({ dialogVisible: false }) }
                         lockScroll={ true }
                         modalAppendToBody={ true }
                     >
                         <Dialog.Body>
-                            {this.state.dialogVisible ? <NewContact onSuccess={ this.handleAddNewContactSuccess.bind(this) }/> : ''}
+                            {this.state.dialogVisible ? <NewGroup onSuccess={ this.handleAddNewContactSuccess.bind(this) }/> : ''}
                         </Dialog.Body>
                     </Dialog>
                 </div>
