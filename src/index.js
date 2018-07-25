@@ -11,6 +11,12 @@ import 'sanitize.css/sanitize.css'
 import './assets/style/icomoon.css'
 import './assets/style/main.css'
 
+
+import { i18n } from 'element-react'
+import locale from 'element-react/src/locale/lang/ru-RU'
+
+i18n.use(locale);
+
 const target = document.querySelector('#root')
 
 render(

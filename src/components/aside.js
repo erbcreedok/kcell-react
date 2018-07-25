@@ -61,11 +61,12 @@ class Aside extends React.Component {
                                 <span className="aside-title">Рассылки</span>
                             </AsideMenu.Item>
                         </Link>
-                        <Link to="/saved-groups"/>
-                        <AsideMenu.Item index="/saved-groups" style={this.menuItemStyle}>
-                            <i className="icomoon icon-saved"/>
-                            <span className="aside-title">Сохраненная группы</span>
-                        </AsideMenu.Item>
+                        <Link to="/saved-groups">
+                            <AsideMenu.Item index="/saved-groups" style={this.menuItemStyle}>
+                                <i className="icomoon icon-saved"/>
+                                <span className="aside-title">Сохраненная группы</span>
+                            </AsideMenu.Item>
+                        </Link>
                     </AsideMenu>
                 </div>
             </aside>

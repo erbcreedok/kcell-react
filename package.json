@@ -21,6 +21,7 @@
     "element-react": "^1.4.20",
     "element-theme-default": "^1.4.13",
     "firebase": "^5.2.0",
+    "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "5.0.7",

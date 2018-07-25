@@ -3,7 +3,12 @@ import './circle-button.css'
 
 class CircleButton extends React.Component {
     render() {
-        return <button onClick={this.props.onClick.bind(this)} className="circle-button">{this.props.children}</button>
+        const classes = this.props.className ? this.props.className : ''
+        const styles = this.props.style ? this.props.style : {}
+        return <button onClick={this.props.onClick.bind(this)}
+                       className={classes + ' circle-button'}
+                       style={{...styles}}
+        >{this.props.children}</button>
     }
 }
 

@@ -1,12 +1,14 @@
 import api from '../api/kcell'
 
-export const FETCH = 'phones/FETCH'
-export const SET_REQUESTING = 'phones/REQUEST'
+const rootName = 'phones';
+
+export const FETCH = `${rootName}/FETCH`
+export const SET_REQUESTING = `${rootName}/REQUEST`
 
 const initialState = {
     list: [],
     isLoading: false,
-    isDirty: false
+    isDirty: false,
 }
 
 export default (state = initialState, action) => {

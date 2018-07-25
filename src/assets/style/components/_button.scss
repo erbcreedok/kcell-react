@@ -1,0 +1,21 @@
+.el-button--primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  transition: .3s;
+  &:focus, &:hover {
+    background-color: $primary-color - #111;
+    border-color: $primary-color - #111;
+  }
+}
+.btn-default {
+  color: $gray2-color;
+  border: 1px solid #c1c2c4;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  transition: .3s;
+  &:hover {
+    color: #FFFFFF;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+}

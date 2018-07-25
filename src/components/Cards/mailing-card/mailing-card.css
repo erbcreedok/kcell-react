@@ -1,0 +1,51 @@
+.mailing-card {
+    max-width: 270px;
+    height: 260px;
+    padding: 30px 19px 20px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: -11px 9px 21px 0 rgba(173, 182, 217, 0.17);
+}
+.status-tag {
+    padding: 0 2px 0 4px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 2px;
+    color: white;
+    font-size: 1rem;
+}
+.status-tag.status-success {
+    background-color: #78ca3c;
+}
+.status-tag.status-wait {
+    background-color: #6dcbef;
+    opacity: 0.74;
+}
+.mailing-card .mailing-card-date {
+    font-size: 12px;
+    color: #686868;
+}
+.mailing-card-name {
+    font-size: 20px;
+    line-height: 1;
+    color: #5e3a89;
+    max-height: 40px;
+    overflow: hidden;
+}
+.mailing-card-text {
+    color: #a6a7a8;
+    font-size: 14px;
+    line-height: 18px;
+    max-height: 108px;
+    overflow: hidden;
+}
+.tariff-tag {
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    font-size: 1.2rem;
+    padding: 0 8px;
+    color: white;
+    border-radius: 11.5px;
+    background-color: #8954ba;
+}

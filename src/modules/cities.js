@@ -1,7 +1,9 @@
 import api from '../api/kcell'
 
-export const FETCH = 'cities/FETCH'
-export const SET_REQUESTING = 'cities/REQUEST'
+const rootName = 'cities';
+
+export const FETCH = `${rootName}/FETCH`
+export const SET_REQUESTING = `${rootName}/REQUEST`
 
 const initialState = {
     list: [],

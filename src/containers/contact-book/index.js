@@ -23,9 +23,9 @@ class ContactBook extends React.Component {
                     minWidth: '100px',
                     render: (data) => {
                         return data.status==='ACTIVE' ?
-                                <span className="color-success">Подписан</span>
+                                <span className="color-success">Подписан{data.sex==='f'?'а':''}</span>
                             : data.status==='INACTIVE' ?
-                                <span className="color-danger">Отписан</span>
+                                <span className="color-danger">Отписан{data.sex==='f'?'а':''}</span>
                             : ''
 
                     }
@@ -61,8 +61,8 @@ class ContactBook extends React.Component {
                     width: 100,
                     render: ()=>{
                         return <span>
-                            <Button type="text" size="small" className="mx-3"><i className="el-icon-edit color-gray"/></Button>
-                            <Button type="text" size="small" className="mx-3"><i className="el-icon-delete color-gray"/></Button>
+                            <Button type="text" size="small" className="mx-3 d-inline-block"><i className="el-icon-edit color-gray"/></Button>
+                            <Button type="text" size="small" className="mx-3 d-inline-block"><i className="el-icon-delete color-gray"/></Button>
                         </span>
                     }
                 }
@@ -79,7 +79,7 @@ class ContactBook extends React.Component {
 
     render () {
         return (
-            <div className="contact-book" style={{marginTop: '92px'}}>
+            <div className="contact-book" style={{marginTop: '60px'}}>
                 <div className="row mx-0 align-items-center justify-content-between">
                     <h2 className="color-primary">
                         Адресная книга
@@ -101,7 +101,7 @@ class ContactBook extends React.Component {
                 </Loading>
                 <div className="row mx-0 align-items-center justify-content-between">
                     <p className="mb-0 font-weight-bold" onClick={ () => alert('hi') }>{this.props.phones.length} Контактов</p>
-                    <CircleButton onClick={ () => this.setState({ dialogVisible: true }) }>+</CircleButton>
+                    <CircleButton style={{position: 'fixed', bottom: '20px', right: '50px', zIndex: '1000'}} onClick={ () => this.setState({ dialogVisible: true }) }>+</CircleButton>
                 </div>
                 <div className="modal-container" style={{zIndex:"1032", position: 'relative'}}>
                     <Dialog
@@ -113,12 +113,17 @@ class ContactBook extends React.Component {
                         modalAppendToBody={ true }
                     >
                         <Dialog.Body>
-                            {this.state.dialogVisible ? <NewContact onSuccess={ () => { this.setState({dialogVisible: false}); this.props.loadPhones() }}/> : ''}
+                            {this.state.dialogVisible ? <NewContact onSuccess={ this.handleAddNewContactSuccess.bind(this) }/> : ''}
                         </Dialog.Body>
                     </Dialog>
                 </div>
             </div>
         )
+    }
+
+    handleAddNewContactSuccess() {
+        this.setState({dialogVisible: false})
+        this.props.loadPhones()
     }
 
 }
