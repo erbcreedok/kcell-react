@@ -1,4 +1,4 @@
-import api from '../api/kcell'
+import api from '../api/kcell/index'
 
 const rootName = 'cities';
 

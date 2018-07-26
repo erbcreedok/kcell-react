@@ -1,4 +1,4 @@
-import api from '../api/kcell'
+import api from '../api/kcell/index'
 
 const rootName = 'contactGroups';
 
@@ -49,6 +49,15 @@ export const loadGroups = () => dispatch => {
             return item
         })
         dispatch({type: FETCH, payload: data})
+        dispatch(setLoading(false))
+    })
+}
+
+
+export const addGroup = (data) => dispatch => {
+    dispatch(setLoading(true))
+    return api.post('group/save', data).then(res => {
+        console.log(res)
         dispatch(setLoading(false))
     })
 }

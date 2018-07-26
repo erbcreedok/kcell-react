@@ -18,7 +18,8 @@ class NewMailing extends React.Component {
                 bulkSmsName: '',
                 text: '',
                 operatorId: 1,
-                groupId: null,
+                gorupIds: [],
+                phonebookContactIds: [],
                 date: [],
             },
             rules: {
@@ -31,8 +32,8 @@ class NewMailing extends React.Component {
                 text: [
                     { required: true, message: 'Пожалуйста, введите текст для рассылки', trigger: 'blur' }
                 ],
-                groupId: [
-                    { type: 'number', required: true, message: 'Пожалуйста, выберите группу для которой вы шлете рассылку', trigger: 'change' }
+                gorupIds: [
+                    { type: 'array', required: true, message: 'Пожалуйста, выберите группы, для которых вы шлете рассылку', trigger: 'change' }
                 ],
                 date: [
                     { type: 'array', required: true, message: 'Пожалуйста, укажите время рассылки', trigger: 'change' },
@@ -127,11 +128,12 @@ class NewMailing extends React.Component {
                                 <Form.Item label="Название рассылки" prop="bulkSmsName" className="mb-5">
                                     <Input value={this.state.form.bulkSmsName} onChange={this.onChange.bind(this, 'bulkSmsName')}/>
                                 </Form.Item>
-                                <Form.Item label="Группа абонентов" prop="groupId" className="mb-5">
+                                <Form.Item label="Группа абонентов" prop="gorupIds" className="mb-5">
                                     <Select placeholder="Выберите группу"
                                             style={{width: '100%'}}
-                                            value={this.state.form.groupId}
-                                            onChange={this.onChange.bind(this, 'groupId')}
+                                            value={this.state.form.gorupIds}
+                                            multiple={true}
+                                            onChange={this.onChange.bind(this, 'gorupIds')}
                                             clearable={true}
                                             filterable={true}
                                     >

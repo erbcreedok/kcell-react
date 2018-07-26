@@ -1,5 +1,4 @@
-import api from '../api/kcell'
-import * as moment from 'moment'
+import {getMailing, postMailing} from '../api/kcell/index'
 
 const rootName = 'mailings';
 
@@ -37,12 +36,7 @@ const setLoading = (status) => dispatch => {
 export const loadMailings = () => dispatch => {
     dispatch(setLoading(true))
 
-    return api.get('sms/bulk-sms/list').then( res => {
-        const data = res.data.content.map(item => {
-            item.startDate = moment(item.startDate).get()
-            item.endDate = moment(item.endDate).get()
-            return item
-        }).reverse()
+    return getMailing().then(data => {
         dispatch({type: FETCH, payload: data})
         dispatch(setLoading(false))
     })
@@ -51,7 +45,10 @@ export const loadMailings = () => dispatch => {
 export const addMailing = (data) => dispatch => {
     dispatch(setLoading(true))
 
-    return api.post(`sms/bulk-sms/byGroupId/${data.groupId}`, data).then(res => {
+    data.startDate = data.date[0]
+    data.endDate = data.date[1]
+
+    return postMailing(data).then(res => {
         console.log(res)
         dispatch(setLoading(false))
     })

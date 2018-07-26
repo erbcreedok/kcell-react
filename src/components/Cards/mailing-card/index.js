@@ -21,20 +21,20 @@ class MailingCard extends React.Component {
     renderMailingCard(mailing) {
         const classes = this.props.className ? this.props.className : ''
         const styles = this.props.style ? this.props.style : {}
-        const now = new Date()
-        const status = now <= mailing.startDate ? 0 : now >= mailing.endDate ? 2 : 1
+        const status = mailing.statusId
         const statuses = [
-            <span className="status-tag status-wait">Запланировано</span>,
             <span className="status-tag status-action">Рассылается</span>,
             <span className="status-tag status-success">Отправлено</span>,
+            <span className="status-tag status-wait">Запланировано</span>,
         ]
         const dates = () => {
             const start = moment(mailing.startDate)
             const end = moment(mailing.endDate)
             const startF = start.format('DD MMMM hh:mm')
-            const endF = start.diff(end, 'days') > 0 ? end.format('DD MMMM hh:mm') : end.format('hh:mm')
+            console.log(start.diff(end, 'days'))
+            const endF = end.diff(start, 'days') > 0 ? end.format('DD MMMM hh:mm') : end.format('hh:mm')
             const date = startF + ' - ' + endF
-            return <span className="mailing-card-date">{date}</span>
+            return <span className="mailing-card-date pl-3">{date}</span>
         }
         return (
             <div className={classes + ' mailing-card'} style={{...styles}}>

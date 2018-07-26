@@ -1,10 +1,11 @@
 import React from 'react'
-import {Button, Form, Input, Message, Radio, Select, Switch, Loading} from "element-react";
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {loadCities} from "../../modules/cities";
-import {loadTariffs} from "../../modules/tariffs";
-import {addPhone} from "../../modules/phones";
+import {Button, Form, Input, Message, Radio, Select, Switch, Loading} from "element-react"
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import {loadCities} from "../../modules/cities"
+import {loadTariffs} from "../../modules/tariffs"
+import {addPhone} from "../../modules/phones"
+import InputMask from 'react-input-mask'
 
 class NewContact extends React.Component {
 
@@ -125,7 +126,9 @@ class NewContact extends React.Component {
                         </div>
                         <div className="col-md-6">
                             <Form.Item label="Номер" prop="phoneNumber" className="mb-5">
-                                <Input value={this.state.form.phoneNumber} onChange={this.onChange.bind(this, 'phoneNumber')}/>
+                                <InputMask mask="+7 (799) 999 99 99" value={this.state.form.phoneNumber} onChange={this.onChange.bind(this, 'phoneNumber')}>
+                                    {(inputProps) => <Input {...inputProps} type="tel"/>}
+                                </InputMask>
                             </Form.Item>
                             <Form.Item label="Тариф" prop="tariffId" className="mb-5">
                                 <Select placeholder="Выберите тариф"

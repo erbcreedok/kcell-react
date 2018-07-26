@@ -3,6 +3,7 @@ import {Button, Form, Input, Loading, Steps} from "element-react"
 import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
 import './Forms.css'
+import {getPhones} from '../../api/kcell/index'
 
 class NewGroup extends React.Component {
 
@@ -11,7 +12,12 @@ class NewGroup extends React.Component {
 
         this.state = {
             isLoading: false,
-            activeStep: 2,
+            activeStep: 0,
+            phones: {
+                isDirty: false,
+                isLoading: false,
+                list: []
+            },
             form: {
                 groupName: '',
                 phonebookContactIds: [],
@@ -61,11 +67,15 @@ class NewGroup extends React.Component {
 
     onSubmit(e) {
         e.preventDefault()
-        // this.emitSubmit()
         this.refs.form.validate((valid) => {
             if (valid) {
-                this.setState({isLoading: true})
-
+                this.setState({
+                    activeStep: this.state.activeStep+1
+                })
+                if (this.state.activeStep > 2) {
+                    this.setState({isLoading: true})
+                    this.emitSubmit()
+                }
             } else {
                 console.log('error submit!!')
                 return false
@@ -83,7 +93,31 @@ class NewGroup extends React.Component {
         this.forceUpdate()
     }
 
+    loadPhones(filters={}) {
+        this.setState({
+            phones: {
+                ...this.state.phones,
+                isLoading: true
+            }
+        })
+        getPhones(filters).then(data => {
+            this.setState({
+                phones: {
+                    list: data,
+                    isDirty: true,
+                    isLoading: false
+                }
+            })
+        })
+    }
+
     render() {
+
+        if (this.state.activeStep === 1 && !this.state.phones.isDirty && !this.state.phones.isLoading) {
+            this.loadPhones()
+        }
+
+
         return (
             <div className="new-group-form">
                 <Loading loading={this.state.isLoading}>
@@ -94,23 +128,37 @@ class NewGroup extends React.Component {
                           labelPosition="top"
                           onSubmit={this.onSubmit.bind(this)}
                     >
-                        <div className="d-flex justify-content-center mb-4">
+                        <div className="d-flex justify-content-center mb-5 pb-3">
                             <Steps space={100} active={this.state.activeStep} finishStatus="success" style={{marginRight: '-68px'}}>
                                 <Steps.Step/>
                                 <Steps.Step/>
                                 <Steps.Step/>
                             </Steps>
                         </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <Form.Item label="Название группы" prop="groupName" className="mb-5">
-                                    <Input value={this.state.form.groupName} onChange={this.onChange.bind(this, 'groupName')}/>
-                                </Form.Item>
-                            </div>
-                        </div>
+
+                        {
+                            this.state.activeStep === 0 ?
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <Form.Item label="Название группы" prop="groupName" className="mb-5" placeholder="Введите текст">
+                                            <Input value={this.state.form.groupName} onChange={this.onChange.bind(this, 'groupName')}/>
+                                        </Form.Item>
+                                    </div>
+                                </div>
+                            : this.state.activeStep === 1 ?
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <Form.Item label="Контакты" prop="phonebookContactIds" className="mb-5">
+
+                                        </Form.Item>
+                                    </div>
+                                </div>
+                            : ''
+                        }
+
                         <div className="row pt-2 mx-0">
                             <Form.Item className="mb-0">
-                                <Button type="primary" nativeType="submit">Добавить</Button>
+                                <Button type="primary" nativeType="submit"> {this.state.activeStep < 2 ? 'Далее' : 'Добавить' }</Button>
                             </Form.Item>
                         </div>
                     </Form>

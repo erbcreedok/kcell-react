@@ -79,7 +79,6 @@ class SavedGroups extends React.Component {
     }
 
     render () {
-        console.log(this.props.groups)
         return (
             <div className="contact-book" style={{marginTop: '60px'}}>
                 <div className="row mx-0 align-items-center justify-content-between">
@@ -98,6 +97,7 @@ class SavedGroups extends React.Component {
                         data={this.props.groups}
                         border={false}
                         maxHeight={492}
+
                         emptyText={this.props.isDirty ? 'Данных нет' : 'Загружаем'}
                     />
                 </Loading>
@@ -107,7 +107,7 @@ class SavedGroups extends React.Component {
                 </div>
                 <div className="modal-container" style={{zIndex:"1032", position: 'relative'}}>
                     <Dialog
-                        title="Добавить группу"
+                        title="Создать группу"
                         size="tiny"
                         visible={ this.state.dialogVisible }
                         onCancel={ () => this.setState({ dialogVisible: false }) }

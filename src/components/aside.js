@@ -36,7 +36,7 @@ class Aside extends React.Component {
         return (
             <aside style={this.asideStyle}>
                 <div style={this.asideContainerStyle}>
-                    <AsideMenu defaultActive="1" className="d-flex flex-column justify-content-center" onOpen={this.onOpen.bind(this)} onClose={this.onClose.bind(this)} style={this.menuStyle}>
+                    <AsideMenu defaultActive="/" className="d-flex flex-column justify-content-center" onOpen={this.onOpen.bind(this)} onClose={this.onClose.bind(this)} style={this.menuStyle}>
                         <Link to="/">
                             <AsideMenu.Item index="/" style={this.menuItemStyle}>
                                 <i className="icomoon icon-home"/>

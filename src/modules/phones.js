@@ -1,4 +1,4 @@
-import api from '../api/kcell'
+import {getPhones, postPhone} from '../api/kcell/'
 
 const rootName = 'phones';
 
@@ -36,12 +36,7 @@ const setLoading = (status) => dispatch => {
 export const loadPhones = () => dispatch => {
     dispatch(setLoading(true))
 
-    return api.post('phonebook/list', {}).then( res => {
-        const data = res.data.content
-        data.map(item => {
-            item.fullName = item.firstName + ' ' + item.middleName + ' ' + item.lastName
-            return item
-        })
+    return getPhones().then( data => {
         dispatch({type: FETCH, payload: data})
         dispatch(setLoading(false))
     })
@@ -49,9 +44,8 @@ export const loadPhones = () => dispatch => {
 
 export const addPhone = (data) => dispatch => {
     dispatch(setLoading(true))
-
-    return api.post('phonebook/save-contact', data).then(res => {
-        console.log(res)
+    data.phoneNumber = data.phoneNumber.replace(/[^0-9]/g, '')
+    return postPhone(data).then(() => {
         dispatch(setLoading(false))
     })
 }
