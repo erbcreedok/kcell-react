@@ -31,7 +31,6 @@ class MailingCard extends React.Component {
             const start = moment(mailing.startDate)
             const end = moment(mailing.endDate)
             const startF = start.format('DD MMMM hh:mm')
-            console.log(start.diff(end, 'days'))
             const endF = end.diff(start, 'days') > 0 ? end.format('DD MMMM hh:mm') : end.format('hh:mm')
             const date = startF + ' - ' + endF
             return <span className="mailing-card-date pl-3">{date}</span>
